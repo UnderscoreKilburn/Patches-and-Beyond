@@ -9,7 +9,8 @@
   	"DynamoBlockstateFix",
   	"CrystalSeedSizeFix",
   	"QESingularityFix",
-  	"SingularityCollisionFix"
+  	"SingularityCollisionFix",
+  	"FanProcessingFix"
   ],
   "client": [],
   "injectors": {

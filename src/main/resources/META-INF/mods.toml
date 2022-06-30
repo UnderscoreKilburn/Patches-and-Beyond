@@ -1,13 +1,13 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-license="e"
+license="MIT"
 
 [[mods]]
 modId="patchesandbeyond"
 version="0.1"
 displayName="Patches and Beyond"
-authors="_Kilburn"
-description="A set of bugfix patches for several mods included in this modpack"
+authors="UnderscoreKilburn"
+description="A set of bugfix patches for several mods included in Create: Above and Beyond."
 
 [[dependencies.patchesandbeyond]]
     modId="forge"
