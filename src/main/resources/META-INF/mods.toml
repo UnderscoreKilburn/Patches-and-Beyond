@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="e"
+
+[[mods]]
+modId="patchesandbeyond"
+version="0.1"
+displayName="Patches and Beyond"
+authors="_Kilburn"
+description="A set of bugfix patches for several mods included in this modpack"
+
+[[dependencies.patchesandbeyond]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36.2.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.patchesandbeyond]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"

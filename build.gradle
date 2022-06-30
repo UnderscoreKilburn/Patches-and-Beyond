@@ -1,0 +1,119 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        mavenCentral()
+        jcenter()
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: "${mixingradle_version}"
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+
+// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
+
+version = '1.0'
+group = 'com.underscorekilburn.patchesandbeyond'
+archivesBaseName = 'patchesandbeyond'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+
+minecraft {
+    mappings channel: 'official', version: '1.16.5'
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+	
+    runs {
+        client {
+            workingDirectory project.file('run')
+            arg '-mixin.config=patchesandbeyond.mixins.json'
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
+            mods {
+                patchesandbeyond {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            arg '-mixin.config=patchesandbeyond.mixins.json'
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'info'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
+            mods {
+                patchesandbeyond {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'info'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+			
+            args '--mod', 'patchesandbeyond', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                patchesandbeyond {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+mixin {
+    add sourceSets.main, "patchesandbeyond.refmap.json"
+}
+
+repositories {
+    maven { url = "https://www.cursemaven.com" }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+	
+    implementation fg.deobf("curse.maven:create-328085:3536025")
+    implementation fg.deobf("curse.maven:flywheel-486392:3535459")
+    implementation fg.deobf("curse.maven:cavebiomeapi-441706:3519248")
+    implementation fg.deobf("curse.maven:applied-energistics-2-223794:3608871")
+    implementation fg.deobf("curse.maven:cofh-core-69162:3788884")
+    implementation fg.deobf("curse.maven:thermal-foundation-222880:3788893")
+    implementation fg.deobf("curse.maven:thermal-expansion-69163:3788892")
+	
+    annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title": "patchesandbeyond",
+            "Specification-Vendor": "underscorekilburn",
+            "Specification-Version": "1",
+            "Implementation-Title": project.name,
+            "Implementation-Version": "${version}",
+            "Implementation-Vendor" :"patchesandbeyond",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+            "MixinConfigs": "patchesandbeyond.mixins.json"
+        ])
+    }
+}

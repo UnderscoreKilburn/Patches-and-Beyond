@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "priority": 1100,
+  "package": "com.underscorekilburn.patchesandbeyond.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "patchesandbeyond.refmap.json",
+  "mixins": [
+  	"HosePulleyFix",
+  	"DynamoBlockstateFix",
+  	"CrystalSeedSizeFix",
+  	"QESingularityFix"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}
