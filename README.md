@@ -10,5 +10,7 @@ A set of minor patches for various mods included in [Create: Above and Beyond](h
 	* This mainly fixes singularities getting stuck when produced by a crushing wheel setup without a chute or a belt directly below.
 * Fixed hose pulleys not consuming input fluids when receiving more than 1000 mB per tick.
 	* This was a really easy way to duplicate any material in molten form and could be easily done by accident with a fluid cell from Thermal.
+* Fixed bulk blasting setups destroying items if a stack of items results in more than one stack of outputs.
+	* This fixes bulk blasting nickel compound ingots in-world causing all but one unprocessed invar ingot to disappear.
 * Quantum-entangled singularities now have their velocity set to zero when produced by exploding a singularity.
 	* This was originally handled by a KubeJS script in order to make automation easier but had the side effect of causing quantum-entangled singularities to immediately drop to the ground when thrown by a player or belt.
