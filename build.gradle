@@ -18,7 +18,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.0'
+version = '0.2'
 group = 'com.underscorekilburn.patchesandbeyond'
 archivesBaseName = 'patchesandbeyond'
 
@@ -99,6 +99,7 @@ dependencies {
     implementation fg.deobf("curse.maven:cofh-core-69162:3788884")
     implementation fg.deobf("curse.maven:thermal-foundation-222880:3788893")
     implementation fg.deobf("curse.maven:thermal-expansion-69163:3788892")
+    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3823991")
 	
     annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
 }

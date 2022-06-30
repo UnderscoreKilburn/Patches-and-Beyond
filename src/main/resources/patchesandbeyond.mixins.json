@@ -10,7 +10,8 @@
   	"CrystalSeedSizeFix",
   	"QESingularityFix",
   	"SingularityCollisionFix",
-  	"FanProcessingFix"
+  	"FanProcessingFix",
+  	"BOPSaplingFix"
   ],
   "client": [],
   "injectors": {
