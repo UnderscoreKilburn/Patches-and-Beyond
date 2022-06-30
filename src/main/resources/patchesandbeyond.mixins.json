@@ -8,7 +8,8 @@
   	"HosePulleyFix",
   	"DynamoBlockstateFix",
   	"CrystalSeedSizeFix",
-  	"QESingularityFix"
+  	"QESingularityFix",
+  	"SingularityCollisionFix"
   ],
   "client": [],
   "injectors": {
