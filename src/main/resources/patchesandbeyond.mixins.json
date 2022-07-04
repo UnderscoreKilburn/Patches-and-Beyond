@@ -2,6 +2,7 @@
   "required": true,
   "priority": 1100,
   "package": "com.underscorekilburn.patchesandbeyond.mixins",
+  "plugin": "com.underscorekilburn.patchesandbeyond.PaBMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "patchesandbeyond.refmap.json",
   "mixins": [
@@ -11,7 +12,8 @@
   	"QESingularityFix",
   	"SingularityCollisionFix",
   	"FanProcessingFix",
-  	"BOPSaplingFix"
+  	"BOPSaplingFix",
+  	"BOPSaplingBigTreeFix"
   ],
   "client": [],
   "injectors": {

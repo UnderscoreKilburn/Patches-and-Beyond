@@ -100,6 +100,12 @@ dependencies {
     implementation fg.deobf("curse.maven:thermal-foundation-222880:3788893")
     implementation fg.deobf("curse.maven:thermal-expansion-69163:3788892")
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3823991")
+	implementation fg.deobf("curse.maven:chisels-bits-231095:3593643")
+	
+	//implementation fg.deobf("curse.maven:ctm-267602:3137659")
+	//implementation fg.deobf("curse.maven:blueprint-382216:3457851")
+	//implementation fg.deobf("curse.maven:neapolitan-382016:3567243")
+	//implementation fg.deobf("curse.maven:storage-drawers-223852:3402515")
 	
     annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
 }

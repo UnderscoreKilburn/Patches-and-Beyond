@@ -10,8 +10,8 @@ public class PatchesAndBeyond
 {
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final String MODID = "patchesandbeyond";
-
-    public PatchesAndBeyond()
-    {
-    }
+	
+	public PatchesAndBeyond()
+	{
+	}
 }
