@@ -26,6 +26,7 @@ public class DynamoBlockstateFix
 	private void init(Properties builder, Supplier<? extends TileCoFH> supplier, CallbackInfo info)
 	{
 		Block self = (Block)(Object)this;
-		self.defaultBlockState = self.defaultBlockState.setValue(BlockStateProperties.WATERLOGGED, false);
+		if(self.defaultBlockState.hasProperty(BlockStateProperties.WATERLOGGED))
+			self.defaultBlockState = self.defaultBlockState.setValue(BlockStateProperties.WATERLOGGED, false);
 	}
 }

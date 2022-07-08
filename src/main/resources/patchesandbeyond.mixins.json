@@ -8,6 +8,8 @@
   "mixins": [
   	"HosePulleyFix",
   	"DynamoBlockstateFix",
+  	"MinecartContraptionFix",
+  	"RopePulleyFix",
   	"CrystalSeedSizeFix",
   	"QESingularityFix",
   	"SingularityCollisionFix",

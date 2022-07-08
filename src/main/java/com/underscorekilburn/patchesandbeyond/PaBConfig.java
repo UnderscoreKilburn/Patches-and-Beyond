@@ -67,9 +67,22 @@ public class PaBConfig
 					true,
 					"FanProcessingFix"
 			);
+			addPatchRule(
+					"minecartContraptionOffsetFix",
+					"Fixes minecart contraptions spawning at a slight offset when assembled.",
+					true,
+					"MinecartContraptionFix"
+			);
+			addPatchRule(
+					"ropePulleyFix",
+					"Fixes pulley contraptions sometimes phasing through solid blocks when unloaded then reloaded while in motion.",
+					true,
+					"RopePulleyFix"
+			);
+			
 			builder.pop();
 		}
-
+		
 		builder.push("BiomesOPlenty");
 		{
 			addPatchRule(

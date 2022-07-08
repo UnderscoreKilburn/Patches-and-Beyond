@@ -12,6 +12,8 @@ A set of minor patches for various mods included in [Create: Above and Beyond](h
 	* This was a really easy way to duplicate any material in molten form and could be easily done by accident with a fluid cell from Thermal.
 * Fixed bulk blasting setups destroying items if a stack of items results in more than one stack of outputs.
 	* This fixes bulk blasting nickel compound ingots in-world causing all but one unprocessed invar ingot to disappear.
+* Fixed pulley contraptions phasing into solid blocks when unloaded and reloaded while in motion.
+* Fixed minecart contraptions spawning off by half a block when assembled before snapping into place.
 * Quantum-entangled singularities now have their velocity set to zero when produced by exploding a singularity.
 	* This was originally handled by a KubeJS script in order to make automation easier but had the side effect of causing quantum-entangled singularities to immediately drop to the ground when thrown by a player or belt.
 * Certain trees from Biomes O' Plenty will no longer replace their base block with dirt when created outside of world generation.
