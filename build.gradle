@@ -87,6 +87,7 @@ mixin {
 
 repositories {
     maven { url = "https://www.cursemaven.com" }
+    maven { url = "http://dvs1.progwml6.com/files/maven" }
 }
 
 dependencies {
@@ -103,13 +104,19 @@ dependencies {
 	implementation fg.deobf("curse.maven:chisels-bits-231095:3593643")
 	implementation fg.deobf("curse.maven:codechicken-lib-1-8-242818:3681973")
 	implementation fg.deobf("curse.maven:cb-multipart-258426:3601708")
-	implementation fg.deobf("curse.maven:improvedbackpacks-270457:3709355")
+	implementation fg.deobf("curse.maven:shutup-experimental-settings-407174:3188120")
 	
-	//implementation fg.deobf("curse.maven:ctm-267602:3137659")
+	implementation fg.deobf("curse.maven:ctm-267602:3137659")
+	implementation fg.deobf("curse.maven:chisel-235279:3376782")
+	
+	
 	//implementation fg.deobf("curse.maven:blueprint-382216:3457851")
 	//implementation fg.deobf("curse.maven:neapolitan-382016:3567243")
 	//implementation fg.deobf("curse.maven:storage-drawers-223852:3402515")
-	
+
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    
     annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
 }
 

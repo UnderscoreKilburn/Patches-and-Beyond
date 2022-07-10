@@ -14,6 +14,8 @@ public class PaBConfig
 	private final ForgeConfigSpec.Builder builder;
 	private final ForgeConfigSpec spec;
 	
+	public ForgeConfigSpec.ConfigValue<Boolean> autoChiselTransparencyFix;
+	
 	public PaBConfig()
 	{
 		rules = new HashMap<String, ForgeConfigSpec.ConfigValue<Boolean>>();
@@ -94,10 +96,37 @@ public class PaBConfig
 			builder.pop();
 		}
 		
+		builder.push("Chisel");
+		{
+			addPatchRule(
+					"jeiIntegrationFix",
+					"Reintroduces JEI integration for Chisel.",
+					true,
+					"ChiselJEIIntegrationFix"
+			);
+			autoChiselTransparencyFix = addBooleanConfig(
+					"autoChiselTransparencyFix",
+					"Fixes the auto chisel block having incorrect transparency.",
+					true
+			);
+			builder.pop();
+		}
+		
+		builder.push("ChiselsAndBits");
+		{
+			addPatchRule(
+					"bitStorageDupeFix",
+					"Fixes several item duplication bugs caused by bit storage tanks.",
+					true,
+					"BitStorageDuplicationFix"
+			);
+			builder.pop();
+		}
+		
 		spec = builder.build();
 	}
 	
-	private void addPatchRule(String name, String desc, boolean defaultValue, String... mixins)
+	private ForgeConfigSpec.ConfigValue<Boolean> addPatchRule(String name, String desc, boolean defaultValue, String... mixins)
 	{
 		ForgeConfigSpec.ConfigValue<Boolean> config = builder.comment(desc).define(name, defaultValue);
 		
@@ -105,6 +134,12 @@ public class PaBConfig
 		{
 			rules.putIfAbsent(m, config);
 		}
+		return config;
+	}
+	
+	private ForgeConfigSpec.ConfigValue<Boolean> addBooleanConfig(String name, String desc, boolean defaultValue)
+	{
+		return builder.comment(desc).define(name, defaultValue);
 	}
 	
 	static public void load(String path)
@@ -123,5 +158,10 @@ public class PaBConfig
 	static public ForgeConfigSpec spec()
 	{
 		return INSTANCE.spec;
+	}
+	
+	static public PaBConfig getInstance()
+	{
+		return INSTANCE;
 	}
 }

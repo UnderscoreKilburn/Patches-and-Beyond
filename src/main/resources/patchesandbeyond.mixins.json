@@ -15,7 +15,9 @@
   	"SingularityCollisionFix",
   	"FanProcessingFix",
   	"BOPSaplingFix",
-  	"BOPSaplingBigTreeFix"
+  	"BOPSaplingBigTreeFix",
+  	"BitStorageDuplicationFix",
+  	"ChiselJEIIntegrationFix"
   ],
   "client": [],
   "injectors": {
