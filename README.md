@@ -18,3 +18,6 @@ A set of minor patches for various mods included in [Create: Above and Beyond](h
 	* This was originally handled by a KubeJS script in order to make automation easier but had the side effect of causing quantum-entangled singularities to immediately drop to the ground when thrown by a player or belt.
 * Certain trees from Biomes O' Plenty will no longer replace their base block with dirt when created outside of world generation.
 	* This fixes certain saplings replacing rich soil and other special blocks with regular dirt when growing.
+* Fixed bit storage tank from Chisels and Bits not consuming input items, allowing many blocks to be duplicated.
+* Re-enabled JEI integration for Chisel.
+* Fixed auto chisel from Chisel not having proper transparency.
