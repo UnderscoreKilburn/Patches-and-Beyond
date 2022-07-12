@@ -29,6 +29,7 @@ public class PaBConfig
 					false,
 					"DedicatedServerRegistryFix"
 			);
+			builder.pop();
 		}
 		
 		builder.push("AppliedEnergistics2");
