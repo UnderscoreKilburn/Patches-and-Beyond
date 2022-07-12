@@ -17,7 +17,14 @@
   	"BOPSaplingFix",
   	"BOPSaplingBigTreeFix",
   	"BitStorageDuplicationFix",
-  	"ChiselJEIIntegrationFix"
+  	"ChiselJEIIntegrationFix",
+  	"AdvancedRocketryConfigFix",
+  	"DisableSpacesuitHUD",
+  	"SimplifiedRocketGUI",
+  	"AdvancedRocketryGravityFix",
+  	"AdvancedRocketryGravityMiscFix",
+  	"ThermalGrenadeRegistrationFix",
+  	"DedicatedServerRegistryFix"
   ],
   "client": [],
   "injectors": {

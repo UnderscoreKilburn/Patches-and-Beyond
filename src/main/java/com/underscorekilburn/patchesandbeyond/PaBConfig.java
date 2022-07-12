@@ -21,6 +21,16 @@ public class PaBConfig
 		rules = new HashMap<String, ForgeConfigSpec.ConfigValue<Boolean>>();
 		builder = new ForgeConfigSpec.Builder();
 		
+		builder.push("General");
+		{
+			addPatchRule(
+					"dedicatedServerRegistryFix",
+					"Forces registries to reload after loading an existing world on a dedicated server. Mainly fixes biome shuffling when adding or updating biome mods.\nThis has no effect on singleplayer or LAN worlds as Forge already fixes biome IDs on those.",
+					true,
+					"DedicatedServerRegistryFix"
+			);
+		}
+		
 		builder.push("AppliedEnergistics2");
 		{
 			addPatchRule(
@@ -52,6 +62,13 @@ public class PaBConfig
 					true,
 					"DynamoBlockstateFix"
 			);
+			addPatchRule(
+					"grenadeRegistrationFix",
+					"Fixes grenades from Thermal being registered with an incorrect name on Thermal Foundation 1.5.0.14.",
+					true,
+					"ThermalGrenadeRegistrationFix"
+			);
+			
 			builder.pop();
 		}
 
@@ -100,7 +117,7 @@ public class PaBConfig
 		{
 			addPatchRule(
 					"jeiIntegrationFix",
-					"Reintroduces JEI integration for Chisel.",
+					"Restores JEI integration for Chisel.",
 					true,
 					"ChiselJEIIntegrationFix"
 			);
@@ -121,6 +138,35 @@ public class PaBConfig
 					"BitStorageDuplicationFix"
 			);
 			builder.pop();
+		}
+		
+		builder.push("AdvancedRocketry");
+		{
+			addPatchRule(
+					"configFix",
+					"Fixes Advanced Rocketry creating backups of its config file on startup.",
+					true,
+					"AdvancedRocketryConfigFix"
+			);
+			addPatchRule(
+					"disableSuitHUD",
+					"When set to true, the space suit will no longer display its installed modules in the top left corner of the screen.\nMainly intended for Create: Above and Beyond as spacesuit gear cannot be customized and comes with pre-installed modules.",
+					true,
+					"DisableSpacesuitHUD"
+			);
+			addPatchRule(
+					"simplifiedRocketGUI",
+					"When set to true, replaces the rocket interface with a simplified version which a single inventory slot for inserting planet ID chips into the rocket's guidance computer.\nMainly intended for Create: Above and Beyond as the guidance computer is the only craftable rocket module.",
+					true,
+					"SimplifiedRocketGUI"
+			);
+			addPatchRule(
+					"gravityFix",
+					"Fixes gravity modifiers not working on the moon (or other planets).",
+					true,
+					"AdvancedRocketryGravityFix", "AdvancedRocketryGravityMiscFix"
+			);
+			
 		}
 		
 		spec = builder.build();

@@ -109,6 +109,8 @@ dependencies {
 	implementation fg.deobf("curse.maven:ctm-267602:3137659")
 	implementation fg.deobf("curse.maven:chisel-235279:3376782")
 	
+	implementation fg.deobf("curse.maven:libvulpes-236541:3305524")
+	implementation fg.deobf("curse.maven:advanced-rocketry-236542:3302417")
 	
 	//implementation fg.deobf("curse.maven:blueprint-382216:3457851")
 	//implementation fg.deobf("curse.maven:neapolitan-382016:3567243")
