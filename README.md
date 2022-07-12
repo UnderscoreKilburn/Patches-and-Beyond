@@ -6,6 +6,8 @@ A set of minor patches for various mods included in [Create: Above and Beyond](h
 	* The increased height was originally a fix for an awkward looking interaction when crystal seeds are collected by an ME annihilation plane, undoing it reintroduces this issue but you are very unlikely to notice it while playing this modpack.
 * Changed the default value of the waterlogged state of dynamos from Thermal Expansion from true to false.
 	* The latest version of Thermal Foundation allows dynamos to be waterlogged but without this fix, loading an older save will cause all dynamos in the world to become waterlogged.
+* Fixed grenade entities from Thermal Foundation being registered under the wrong name in Thermal Foundation 1.5.0.14.
+	* This is mainly just there to fix missing entity ID errors when loading an older world and won't have any impact on the game otherwise.
 * Fixed singularities, charged certus quartz and crystal seeds not having some extra data properly set when produced by crushing wheels and other components from Create.
 	* This mainly fixes singularities getting stuck when produced by a crushing wheel setup without a chute or a belt directly below.
 * Fixed hose pulleys not consuming input fluids when receiving more than 1000 mB per tick.
@@ -21,3 +23,12 @@ A set of minor patches for various mods included in [Create: Above and Beyond](h
 * Fixed bit storage tank from Chisels and Bits not consuming input items, allowing many blocks to be duplicated.
 * Re-enabled JEI integration for Chisel.
 * Fixed auto chisel from Chisel not having proper transparency.
+* Fixed Advanced Rocketry creating backups of its config file on startup.
+* Fixed Advanced Rocketry not applying planet specific gravity modifiers.
+* Added an option to hide Advanced Rocketry's spacesuit modules from the HUD.
+	* This is mostly relevant to Above and Beyond as spacesuits cannot be customized and come with pre-installed modules when crafted.
+* Added an option to give Advanced Rocketry's rockets a simplified HUD which only exposes the ID chip slot from their guidance computer.
+	* Also removes the planet selection button as it crashes the game in Above and Beyond.
+* Added an option to force dynamic registries to be reloaded on dedicated servers when loading an existing world.
+	* This fixes biome ID getting shuffled on dedicated servers when adding on updating certain biome mods.
+	* This only affects dedicated servers as Forge already fixes this issues on singleplayer and LAN worlds.
