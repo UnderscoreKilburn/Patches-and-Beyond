@@ -18,7 +18,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '0.2'
+version = '0.3'
 group = 'com.underscorekilburn.patchesandbeyond'
 archivesBaseName = 'patchesandbeyond'
 

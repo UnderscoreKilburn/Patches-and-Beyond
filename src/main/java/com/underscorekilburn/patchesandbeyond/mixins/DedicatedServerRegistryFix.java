@@ -19,10 +19,17 @@ import net.minecraftforge.fml.FMLWorldPersistenceHook;
 @Mixin(Main.class)
 public class DedicatedServerRegistryFix
 {
+	/**
+	 * Forces dynamic registries to be regenerated when loading a world on a dedicated server.
+	 * Forge does this with singleplayer worlds, this prevents biome IDs from getting shuffled when adding or updating biome mods, but this fix
+	 * does not seem to apply to dedicated servers.
+	 * Not the most elegant solution but hopefully it works without breaking anything.
+	 */
+	
 	static private SaveFormat.LevelSave levelSave = null;
 	
 	@ModifyVariable(method="main", at=@At(value="INVOKE", target="Lnet/minecraft/resources/DataPackRegistries;updateGlobals()V", shift=At.Shift.BY, by=-1))
-	static private SaveFormat.LevelSave CaptureLevelSave(SaveFormat.LevelSave save)
+	static private SaveFormat.LevelSave captureLevelSave(SaveFormat.LevelSave save)
 	{
 		levelSave = save;
 		return save;
@@ -33,7 +40,7 @@ public class DedicatedServerRegistryFix
 	{
 		if(levelSave != null)
 		{
-			PatchesAndBeyond.LOGGER.info("Loading an existing world, force reloading dynamic registries");
+			PatchesAndBeyond.LOGGER.info("Loading an existing world, force reloading dynamic registries.");
 			File f = levelSave.getWorldDir().resolve("level.dat").toFile();
 			try
 			{
@@ -44,18 +51,18 @@ public class DedicatedServerRegistryFix
 				}
 				else
 				{
-					PatchesAndBeyond.LOGGER.info("{} not found", f.getAbsolutePath());
+					PatchesAndBeyond.LOGGER.info("{} not found.", f.getAbsolutePath());
 					return oldRegistry;
 				}
 			}
 			catch (Exception exception)
 			{
-				PatchesAndBeyond.LOGGER.info("Failed to read {}, skipping", f.getAbsolutePath());
+				PatchesAndBeyond.LOGGER.info("Failed to read {}, skipping.", f.getAbsolutePath());
 				return oldRegistry;
 			}
 			
 			DynamicRegistries.Impl newRegistry = DynamicRegistries.builtin();
-			PatchesAndBeyond.LOGGER.info("Done reloading dynamic registries");
+			PatchesAndBeyond.LOGGER.info("Done reloading dynamic registries.");
 			return newRegistry;
 		}
 		
