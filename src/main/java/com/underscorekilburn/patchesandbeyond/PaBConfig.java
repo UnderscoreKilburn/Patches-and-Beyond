@@ -26,7 +26,7 @@ public class PaBConfig
 			addPatchRule(
 					"dedicatedServerRegistryFix",
 					"Forces registries to reload after loading an existing world on a dedicated server. Mainly fixes biome shuffling when adding or updating biome mods.\nThis has no effect on singleplayer or LAN worlds as Forge already fixes biome IDs on those.",
-					true,
+					false,
 					"DedicatedServerRegistryFix"
 			);
 		}
@@ -151,13 +151,13 @@ public class PaBConfig
 			addPatchRule(
 					"disableSuitHUD",
 					"When set to true, the space suit will no longer display its installed modules in the top left corner of the screen.\nMainly intended for Create: Above and Beyond as spacesuit gear cannot be customized and comes with pre-installed modules.",
-					true,
+					false,
 					"DisableSpacesuitHUD"
 			);
 			addPatchRule(
 					"simplifiedRocketGUI",
 					"When set to true, replaces the rocket interface with a simplified version which a single inventory slot for inserting planet ID chips into the rocket's guidance computer.\nMainly intended for Create: Above and Beyond as the guidance computer is the only craftable rocket module.",
-					true,
+					false,
 					"SimplifiedRocketGUI"
 			);
 			addPatchRule(
