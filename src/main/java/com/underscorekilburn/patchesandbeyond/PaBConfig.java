@@ -3,6 +3,7 @@ package com.underscorekilburn.patchesandbeyond;
 import java.util.HashMap;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.google.common.base.Supplier;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -10,15 +11,20 @@ public class PaBConfig
 {
 	private static final PaBConfig INSTANCE = new PaBConfig();
 	
-	private HashMap<String, ForgeConfigSpec.ConfigValue<Boolean>> rules;
+	private HashMap<String, Supplier<Boolean>> rules;
 	private final ForgeConfigSpec.Builder builder;
 	private final ForgeConfigSpec spec;
 	
 	public ForgeConfigSpec.ConfigValue<Boolean> autoChiselTransparencyFix;
+
+	public ForgeConfigSpec.ConfigValue<Integer> itemCullingBasin;
+	public ForgeConfigSpec.ConfigValue<Integer> itemCullingBelt;
+	public ForgeConfigSpec.ConfigValue<Integer> itemCullingDepot;
+	public ForgeConfigSpec.ConfigValue<Integer> itemCullingEjector;
 	
 	public PaBConfig()
 	{
-		rules = new HashMap<String, ForgeConfigSpec.ConfigValue<Boolean>>();
+		rules = new HashMap<String, Supplier<Boolean>>();
 		builder = new ForgeConfigSpec.Builder();
 		
 		builder.push("General");
@@ -28,6 +34,12 @@ public class PaBConfig
 					"Forces registries to reload after loading an existing world on a dedicated server. Mainly fixes biome shuffling when adding or updating biome mods.\nThis has no effect on singleplayer or LAN worlds as Forge already fixes biome IDs on those.",
 					false,
 					"DedicatedServerRegistryFix"
+			);
+			addPatchRule(
+					"enableSoundCulling",
+					"When set to true, prevents sounds that are too far away to be heard from playing at all. This can help with performance when building factories with a lot of Create machines.",
+					false,
+					"SoundEngineFix"
 			);
 			builder.pop();
 		}
@@ -99,6 +111,21 @@ public class PaBConfig
 					true,
 					"RopePulleyFix"
 			);
+			addPatchRule(
+					"enableItemCulling",
+					"When set to true, prevents items on belts, depots and other containers from rendering past a certain distance. This may help with performance when building large factories.",
+					false,
+					"ItemCullingBasin", "ItemCullingBelt", "ItemCullingDepot", "ItemCullingEjector"
+			);
+			
+			builder.push("Culling");
+			{
+				itemCullingBasin = builder.define("basinCullDistance", 24);
+				itemCullingBelt = builder.define("beltCullDistance", 24);
+				itemCullingDepot = builder.define("depotCullDistance", 24);
+				itemCullingEjector = builder.define("ejectorCullDistance", 24);
+				builder.pop();
+			}
 			
 			builder.pop();
 		}
@@ -122,11 +149,7 @@ public class PaBConfig
 					true,
 					"ChiselJEIIntegrationFix"
 			);
-			autoChiselTransparencyFix = addBooleanConfig(
-					"autoChiselTransparencyFix",
-					"Fixes the auto chisel block having incorrect transparency.",
-					true
-			);
+			autoChiselTransparencyFix = builder.comment("Fixes the auto chisel block having incorrect transparency.").define("autoChiselTransparencyFix", true);
 			builder.pop();
 		}
 		
@@ -167,7 +190,18 @@ public class PaBConfig
 					true,
 					"AdvancedRocketryGravityFix", "AdvancedRocketryGravityMiscFix"
 			);
-			
+			builder.pop();
+		}
+
+		builder.push("FTBQuests");
+		{
+			addPatchRule(
+					"autoCompleteRewardTweak",
+					"When set to true, quests with auto-claimed team rewards will grant the rewards to the player who completed the quest rather than the first online player in the team.",
+					true,
+					"quests.FTBQuestsEventMixin", "quests.TeamDataMixin"
+			);
+			builder.pop();
 		}
 		
 		spec = builder.build();
@@ -179,15 +213,21 @@ public class PaBConfig
 		
 		for(String m : mixins)
 		{
-			rules.putIfAbsent(m, config);
+			rules.putIfAbsent(m, () -> config.get());
 		}
 		return config;
 	}
-	
-	private ForgeConfigSpec.ConfigValue<Boolean> addBooleanConfig(String name, String desc, boolean defaultValue)
+
+	/*private ForgeConfigSpec.ConfigValue<Integer> addPatchRule(String name, String desc, int defaultValue, Predicate<Integer> pred, String... mixins)
 	{
-		return builder.comment(desc).define(name, defaultValue);
-	}
+		ForgeConfigSpec.ConfigValue<Integer> config = builder.comment(desc).define(name, defaultValue);
+		
+		for(String m : mixins)
+		{
+			rules.putIfAbsent(m, () -> pred.test(config.get()));
+		}
+		return config;
+	}*/
 	
 	static public void load(String path)
 	{
@@ -198,8 +238,8 @@ public class PaBConfig
 	
 	static public boolean shouldApplyMixin(String name)
 	{
-		ForgeConfigSpec.ConfigValue<Boolean> rule = INSTANCE.rules.get(name);
-		return rule != null && rule.get() == true;
+		Supplier<Boolean> rule = INSTANCE.rules.get(name);
+		return rule != null && rule.get();
 	}
 	
 	static public ForgeConfigSpec spec()

@@ -4,7 +4,7 @@ license="MIT"
 
 [[mods]]
 modId="patchesandbeyond"
-version="0.4"
+version="${file.jarVersion}"
 displayName="Patches and Beyond"
 authors="UnderscoreKilburn"
 description="A set of bugfix patches for several mods included in Create: Above and Beyond."

@@ -19,14 +19,22 @@
   	"BitStorageDuplicationFix",
   	"ChiselJEIIntegrationFix",
   	"AdvancedRocketryConfigFix",
-  	"DisableSpacesuitHUD",
   	"SimplifiedRocketGUI",
   	"AdvancedRocketryGravityFix",
   	"AdvancedRocketryGravityMiscFix",
   	"ThermalGrenadeRegistrationFix",
-  	"DedicatedServerRegistryFix"
+  	"DedicatedServerRegistryFix",
+  	"quests.FTBQuestsEventMixin",
+  	"quests.TeamDataMixin"
   ],
-  "client": [],
+  "client": [
+  	"DisableSpacesuitHUD",
+  	"SoundEngineFix",
+  	"ItemCullingBasin",
+  	"ItemCullingBelt",
+  	"ItemCullingDepot",
+  	"ItemCullingEjector"
+  ],
   "injectors": {
     "defaultRequire": 1
   },

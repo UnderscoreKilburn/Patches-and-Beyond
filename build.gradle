@@ -18,7 +18,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '0.4'
+version = '0.5'
 group = 'com.underscorekilburn.patchesandbeyond'
 archivesBaseName = 'patchesandbeyond'
 
@@ -115,7 +115,13 @@ dependencies {
 	//implementation fg.deobf("curse.maven:blueprint-382216:3457851")
 	//implementation fg.deobf("curse.maven:neapolitan-382016:3567243")
 	//implementation fg.deobf("curse.maven:storage-drawers-223852:3402515")
-
+	
+	implementation fg.deobf("curse.maven:ftb-quests-forge-289412:3672855")
+	implementation fg.deobf("curse.maven:ftb-library-forge-404465:3553840")
+	implementation fg.deobf("curse.maven:architectury-api-419699:3857643")
+	implementation fg.deobf("curse.maven:ftb-teams-forge-404468:3535953")
+	implementation fg.deobf("curse.maven:item-filters-309674:3376819")
+	
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
     
